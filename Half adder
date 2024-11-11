@@ -1,0 +1,31 @@
+module halfadder_tb;
+reg a, b;
+wire sum, carry;
+halfadder add1(a, b, sum, carry);
+initial
+begin
+$dumpfile("add1.vcd");
+$dumpvars(0,add1);
+$monitor(" A= %b	B= %b	Sum =%b	Carry = %b\n",  a, b, sum, carry);
+a = 0; b = 0;
+#1
+b = 1;
+#1
+a = 1;
+#1
+b = 0;
+end
+endmodule
+
+
+
+// Code your design here
+module halfadder(a, b, sum, carry);
+input a, b;
+output sum,carry;
+
+/* Using data flow level */
+assign sum = a ^ b; //sum bit
+assign carry = a & b; //carry bit
+
+endmodule
